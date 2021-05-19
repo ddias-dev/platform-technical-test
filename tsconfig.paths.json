@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@*": ["./src/*"] // resolve all modules prefixed with `@` from `src` directory
+    }
+  }
+}

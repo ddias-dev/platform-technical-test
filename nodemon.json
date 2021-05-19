@@ -1,0 +1,7 @@
+{
+  "delay": "1000",
+  "exec": "sls offline",
+  "ext": "js,json,mjs,ts",
+  "verbose": true,
+  "watch": "src"
+}
