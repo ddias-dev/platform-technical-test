@@ -16,7 +16,7 @@ const serverlessConfiguration: AWS = {
   custom: {
     webpack: {
       webpackConfig: './webpack.config.js',
-      packager: 'yarn'
+      includeModules: true
     }
   },
   provider: {
@@ -31,7 +31,7 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       API_HOST_URL: isOffline
-        ? 'http://localhost:3000'
+        ? 'http://localhost:3000/${self:provider.stage}'
         : 'https://#{ApiGatewayRestApi}.execute-api.#{AWS::Region}.amazonaws.com/${self:provider.stage}'
     },
     lambdaHashingVersion: '20201221'

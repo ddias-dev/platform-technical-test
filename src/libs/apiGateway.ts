@@ -3,7 +3,8 @@ import type {
   APIGatewayProxyResult,
   Handler
 } from 'aws-lambda';
-import { get } from 'http';
+import http from 'http';
+import https from 'https';
 import type { FromSchema } from 'json-schema-to-ts';
 import 'source-map-support/register';
 import { URL } from 'url';
@@ -41,7 +42,8 @@ export const formatJSONResponse = (
 
 export const checkAPI = async (name: string, url: URL): Promise<ApiStatus> =>
   await new Promise((resolve) => {
-    get(url.href, (res) => {
+    const client = url.protocol === 'https:' ? https : http;
+    client.get(url.href, (res) => {
       res.on('data', function (data: string) {
         process.stdout.write(data);
       });
